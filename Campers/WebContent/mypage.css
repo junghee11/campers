@@ -1,0 +1,11 @@
+/* #category {margin-top: 150px;}
+#category h3 {margin-bottom: 30px;} */
+/* #cat-sub  {} */
+#mid div h4 {line-height: 80px; }
+#v-pills-tab {width:15%; margin:50px 15px; }
+#v-pills-tabContent {height:900px; width: 80%;
+                     margin:50px 15px; 
+                     color: gray;}
+#v-pills-tabContent form {width: 80%; 
+    margin: 25px;
+}
