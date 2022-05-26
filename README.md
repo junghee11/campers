@@ -59,6 +59,7 @@
 <!-- <hr/> -->
 <video autoplay controls loop muted poster="Campers/WebContent/img/1.jpg" preload="auto">
   <source src="Campers/WebContent/img/login&shop.mp4" type="video/mp4">
+  지원하지 않음
 </video>
 
 <!-- <video autoplay controls loop muted poster="" preload="">
