@@ -57,7 +57,8 @@
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">🌿Preview</h3>
 <!-- <hr/> -->
-<video autoplay controls loop muted poster="Campers/WebContent/img/1.jpg" preload="auto">
+<!-- poster="Campers/WebContent/img/1.jpg" preload="auto" -->
+<video muted autoplay loop >
   <source src="Campers/WebContent/img/login&shop.mp4" type="video/mp4">
   지원하지 않음
 </video>
