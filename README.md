@@ -57,6 +57,19 @@
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">🌿Preview</h3>
 <!-- <hr/> -->
+<video autoplay controls loop muted poster="" preload="">
+  <source src="Campers/WebContent/img/login&shop.mp4" type="video/mp4">
+</video>
+
+<!-- <video autoplay controls loop muted poster="" preload="">
+  <source src="Campers/WebContent/img/mypage.mp4" type="video/mp4">
+</video>
+<video autoplay controls loop muted poster="" preload="">
+  <source src="Campers/WebContent/img/kakao_api.mp4" type="video/mp4">
+</video>
+<video autoplay controls loop muted poster="" preload="">
+  <source src="Campers/WebContent/img/review.mp4" type="video/mp4">
+</video> -->
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">👥Requirements</h3>
 <!-- <hr/> -->
