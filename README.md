@@ -12,17 +12,17 @@
 <!-- <hr/> -->
   <h4 style="color:gray; margin-left: 12px;">로그인</h4>
     <ul>
-      <li style="list-style: decimal; height: 25px;">메인페이지 서비스 이용 시도 시 로그인 페이지로 이동</li>
-      <li style="list-style: decimal; height: 25px;">유저가 비로그인 시 마이페이지 안보이게 설정</li>
-      <li style="list-style: decimal; height: 25px;">로그인 시 userId, userPw가 일치하는지 체크</li>
-      <li style="list-style: decimal; height: 25px;">input에 userId, userPw 정보가 다 들어왔는지 확인</li>
-      <li style="list-style: decimal; height: 25px;">로그인 정보 분실 시, id,pw 찾기</li>
+      <li>메인페이지 서비스 이용 시도 시 로그인 페이지로 이동</li>
+      <li>유저가 비로그인 시 마이페이지 안보이게 설정</li>
+      <li>로그인 시 userId, userPw가 일치하는지 체크</li>
+      <li>input에 userId, userPw 정보가 다 들어왔는지 확인</li>
+      <li>로그인 정보 분실 시, id,pw 찾기</li>
     </ul>
 
   <h4 style="color:gray; margin-left: 12px;">회원가입</h4>
     <ul>
-      <li style="list-style: decimal; height: 25px;">아이디 중복 체크</li>
-      <li style="list-style: decimal; height: 25px;">input에 정보가 다 들어왔는지 확인하고 회원가입 승인</li>
+      <li>아이디 중복 체크</li>
+      <li>input에 정보가 다 들어왔는지 확인하고 회원가입 승인</li>
     </ul>
   <h4 style="color:gray; margin-left: 12px;">제품리스트</h4>
     <ul>
@@ -52,7 +52,7 @@
     </ul>
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">🧤Database</h3>
-<img src="Campers/WebContent/img" alt="DB">
+<img src="Campers/WebContent/img/campers_db" alt="DB">
 <!-- <hr/> -->
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">🌿Preview</h3>
