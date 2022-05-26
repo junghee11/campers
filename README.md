@@ -52,7 +52,7 @@
     </ul>
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">🧤Database</h3>
-<img src="Campers/WebContent/img/campers_db" alt="DB">
+<img src="Campers/WebContent/img/campers_db.png" alt="DB">
 <!-- <hr/> -->
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">🌿Preview</h3>
