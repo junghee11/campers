@@ -57,33 +57,18 @@
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">🌿Preview</h3>
 <!-- <hr/> -->
-<!-- poster="Campers/WebContent/img/1.jpg" preload="auto" -->
 
-<img src="Campers/WebContent/img/login&shop_5.gif" alt="login">
+<h4>로그인&상품조회</h4>
+<img src="Campers/WebContent/img/login&shop.gif" alt="login">
 
-<video src="Campers/WebContent/img/login&shop.mp4" controls></video>
+<h4>마이페이지</h4>
+<img src="Campers/WebContent/img/mypage.gif" alt="mypage">
 
-<video width="800px" height="600px" src="Campers/WebContent/img/login&shop.mp4" controls></video>
+<h4>리뷰게시판</h4>
+<img src="Campers/WebContent/img/review.gif" alt="review">
 
-<video muted autoplay loop >
-  <source width="800px" height="600px" src="Campers/WebContent/img/login&shop.mp4" type="video/mp4">
-  지원하지 않음
-</video>
-
-<!-- <video muted autoplay loop >
-  <source src="Campers/WebContent/img/login&shop.mp4" type="video/mp4">
-  지원하지 않음
-</video> -->
-
-<!-- <video autoplay controls loop poster="" preload="">
-  <source src="Campers/WebContent/img/mypage.mp4" type="video/mp4">
-</video> -->
-<!-- <video autoplay controls loop muted poster="" preload="">
-  <source src="Campers/WebContent/img/kakao_api.mp4" type="video/mp4">
-</video>
-<video autoplay controls loop muted poster="" preload="">
-  <source src="Campers/WebContent/img/review.mp4" type="video/mp4">
-</video> -->
+<h4>카카오페이API</h4>
+<img src="Campers/WebContent/img/kakao_api.gif" alt="kakao_api">
 
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">👥Requirements</h3>
 <!-- <hr/> -->
