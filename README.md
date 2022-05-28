@@ -63,7 +63,7 @@
   지원하지 않음
 </video>
 
-<!-- <video autoplay controls loop muted poster="" preload="">
+<!-- <video autoplay controls loop poster="" preload="">
   <source src="Campers/WebContent/img/mypage.mp4" type="video/mp4">
 </video>
 <video autoplay controls loop muted poster="" preload="">
