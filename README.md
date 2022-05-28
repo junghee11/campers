@@ -59,7 +59,7 @@
 <!-- <hr/> -->
 <!-- poster="Campers/WebContent/img/1.jpg" preload="auto" -->
 
-<img src="Campers/WebContent/img/login&shop.gif" alt="login">
+<img src="Campers/WebContent/img/login&shop_5.gif" alt="login">
 
 <video src="Campers/WebContent/img/login&shop.mp4" controls></video>
 
