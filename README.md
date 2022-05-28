@@ -58,14 +58,22 @@
 <h3 style="padding:10px; border-bottom: 1px solid rgb(195, 193, 193);">🌿Preview</h3>
 <!-- <hr/> -->
 <!-- poster="Campers/WebContent/img/1.jpg" preload="auto" -->
+
+<video width="800px" height="600px" src="Campers/WebContent/img/login&shop.mp4" controls></video>
+
 <video muted autoplay loop >
-  <source src="Campers/WebContent/img/login&shop.mp4" type="video/mp4">
+  <source width="800px" height="600px" src="Campers/WebContent/img/login&shop.mp4" type="video/mp4">
   지원하지 않음
 </video>
 
-<video autoplay controls loop poster="" preload="">
+<!-- <video muted autoplay loop >
+  <source src="Campers/WebContent/img/login&shop.mp4" type="video/mp4">
+  지원하지 않음
+</video> -->
+
+<!-- <video autoplay controls loop poster="" preload="">
   <source src="Campers/WebContent/img/mypage.mp4" type="video/mp4">
-</video>
+</video> -->
 <!-- <video autoplay controls loop muted poster="" preload="">
   <source src="Campers/WebContent/img/kakao_api.mp4" type="video/mp4">
 </video>
