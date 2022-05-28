@@ -59,6 +59,8 @@
 <!-- <hr/> -->
 <!-- poster="Campers/WebContent/img/1.jpg" preload="auto" -->
 
+<video src="Campers/WebContent/img/login&shop.mp4" controls></video>
+
 <video width="800px" height="600px" src="Campers/WebContent/img/login&shop.mp4" controls></video>
 
 <video muted autoplay loop >
