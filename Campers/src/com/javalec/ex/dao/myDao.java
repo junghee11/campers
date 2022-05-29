@@ -647,12 +647,31 @@ public class myDao {
 		}
 	}
 	
-	public ArrayList<itemDto> itemList(String kind) {
+	public ArrayList<itemDto> itemList(String kind, String orderBy) {
 		ArrayList<itemDto> dtos = new ArrayList<itemDto>();
 		try {
+			String sql = "";
 			conn = getConnection();
-			
-			String sql = "select item_idx, category, pName, pContent, price, sellCount, pickCount, imgLink from item where category like ? order by item_idx asc";
+			switch(orderBy) {
+			case "" : 
+				sql = "select item.item_idx, category, pName, pContent, price, sellCount, imgLink, (select count(*) from jjim where jjim.item_idx = item.item_idx) jjim, date from item where category like ? order by date asc";
+				break;
+			case "date" : 
+				sql = "select item.item_idx, category, pName, pContent, price, sellCount, imgLink, (select count(*) from jjim where jjim.item_idx = item.item_idx) jjim, date from item where category like ? order by date asc";
+				break;
+			case "sell" : 
+				sql = "select item.item_idx, category, pName, pContent, price, sellCount, imgLink, (select count(*) from jjim where jjim.item_idx = item.item_idx) jjim, date from item where category like ? order by SellCount desc";
+				break;
+			case "jjim" : 
+				sql = "select item.item_idx, category, pName, pContent, price, sellCount, imgLink, (select count(*) from jjim where jjim.item_idx = item.item_idx) jjim, date from item where category like ? order by jjim asc";
+				break;
+			case "low" : 
+				sql = "select item.item_idx, category, pName, pContent, price, sellCount, imgLink, (select count(*) from jjim where jjim.item_idx = item.item_idx) jjim, date from item where category like ? order by price asc";
+				break;
+			case "high" : 
+				sql = "select item.item_idx, category, pName, pContent, price, sellCount, imgLink, (select count(*) from jjim where jjim.item_idx = item.item_idx) jjim, date from item where category like ? order by price desc";
+				break;
+			}
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+kind); // chip == category
 			
@@ -664,10 +683,10 @@ public class myDao {
 				String pContent= rs.getString("pContent");
 				int price = rs.getInt("price");
 				int sellCount = rs.getInt("sellCount");
-				int pickCount = rs.getInt("pickCount");
 				String imgLink = rs.getString("imgLink");
+				int jjim = rs.getInt("jjim");
 				
-				itemDto dto = new itemDto(item_idx, category, pName, pContent, price, sellCount, pickCount, imgLink);
+				itemDto dto = new itemDto(item_idx, category, pName, pContent, price, sellCount, imgLink, jjim);
 				dtos.add(dto);
 			}
 			
@@ -686,14 +705,18 @@ public class myDao {
 		return dtos;
 	}
 	
-	public itemDto itemView(String strID) {
+	public itemDto itemView(String mem_id, String strID) {
 		//upHit(strID);
 		itemDto dto = null;
 		try {
 			conn = getConnection();
-			String sql = "select * from item where item_idx=?";
+			String sql = "select *, (select count(*) from jjim where mem_id = ? && item_idx = ? ) jjim from item where item_idx=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, strID);
+			pstmt.setString(1, mem_id);
+			pstmt.setString(2, strID);
+			pstmt.setString(3, strID);
+			System.out.println(mem_id);
+			System.out.println(strID);
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -703,10 +726,11 @@ public class myDao {
 				String pContent= rs.getString("pContent");
 				int price = rs.getInt("price");
 				int sellCount = rs.getInt("sellCount");
-				int pickCount = rs.getInt("pickCount");
+//				int pickCount = rs.getInt("pickCount");
 				String imgLink = rs.getString("imgLink");
+				int jjim = rs.getInt("jjim");
 				
-				dto = new itemDto(item_idx, category, pName, pContent, price, sellCount, pickCount, imgLink);
+				dto = new itemDto(item_idx, category, pName, pContent, price, sellCount, imgLink, jjim);
 			}
 		
 		} catch(Exception e) {
@@ -723,12 +747,59 @@ public class myDao {
 		return dto;
 	}
 	
+	//2022.05.17 만들다가 맘, 밑에 주문이랑 같이하기
+	private void upSellCount(String item_idx) {
+		try {
+			conn = getConnection();
+			String sql = "update item set sellCount = sellCount+1 where item_idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, item_idx);
+			pstmt.executeUpdate();
+		
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public void orderProduct(String mem_id, String item_idx, int amount, int total_amount) {
+		upSellCount(item_idx);
+		try {
+			conn = getConnection();
+			String sql = "insert into ordertbl(mem_id, item_idx, quantity, total_amount) values (?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			pstmt.setString(2, item_idx);
+			pstmt.setInt(3, amount);
+			pstmt.setInt(4, total_amount);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
 	///item 추가, 삭제, 수정 완성해야함!!
 	public void insertItem(int item_idx, String category, String pName, String pContent, int price, String imgLink) {
 		try {
 			conn = getConnection();
 			String sql = "insert into item(item_idx, category, pName, pContent, price, sellCount, " + 
-			"pickCount, imgLink) values(?, ?, ?, ?, ?, 0, 0, ?)";
+			"imgLink) values(?, ?, ?, ?, ?, 0, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, item_idx);
 			pstmt.setString(2, category);
@@ -802,6 +873,27 @@ public class myDao {
 			pstmt.setString(1, mem_id);
 			pstmt.setInt(2, Integer.parseInt(item_idx));
 			pstmt.setInt(3, Integer.parseInt(amount));
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public void updateCart(String cart_idx) {
+		try {
+			conn = getConnection();
+			String sql = "update cart set purchase='결제완료' where cart_idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cart_idx);
+//			pstmt.setInt(2, Integer.parseInt(item_idx));
 			pstmt.executeUpdate();
 			
 		} catch(Exception e) {
