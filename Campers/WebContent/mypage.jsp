@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.javalec.ex.*" %>
 <%@ page import="com.javalec.ex.dao.*" %>
 <%@ page import="com.javalec.ex.dto.*" %>
@@ -79,14 +80,14 @@ dto = dao.getMember(id); //db 접속해서 id로 조회함
                     <div class="col" id="header-nav">
                         <ul id="main-nav" >
                             <li class="menu-item" onmouseleave="close_menu()">
-                                <b><a href="shop_list.do?category=" id="0" onmouseover="sub_menu()" >SHOP</a></b>
+                                <b><a href="shop_list.do?category=&orderby=date" id="0" onmouseover="sub_menu()" >SHOP</a></b>
                                 <div class="sub-menu">
                                     <div class="sub-menu-inner" style="left:70px; display:none;">
                                       <dl>
-                                        <a href="shop_list.do?category=tent"><dd>텐트&타프</dd></a>
-                                        <a href="shop_list.do?category=furniture"><dd>테이블&체어</dd></a>
-                                        <a href="shop_list.do?category=cook"><dd>조리도구</dd></a>
-                                        <a href="shop_list.do?category=sleep"><dd>침낭&매트</dd></a>
+                                        <a href="shop_list.do?category=tent&orderby=date"><dd>텐트&타프</dd></a>
+                                        <a href="shop_list.do?category=furniture&orderby=date"><dd>테이블&체어</dd></a>
+                                        <a href="shop_list.do?category=cook&orderby=date"><dd>조리도구</dd></a>
+                                        <a href="shop_list.do?category=sleep&orderby=date"><dd>침낭&매트</dd></a>
                                       </dl>  
                                     </div>
                                 </div>
@@ -199,7 +200,7 @@ dto = dao.getMember(id); //db 접속해서 id로 조회함
 			                                    <tr>
 			                                    <td><img src="${jjim.imgLink }" alt="camping" id="camping" style="width: 100px; height: 100px;"></td>
 			                                    <td><a href="item_detail.do?item_idx=${jjim.item_idx }">${jjim.pName }</a></td>
-			                                    <td>${jjim.price }</td>
+			                                    <td><fmt:formatNumber value="${jjim.price }" type="number" /></td>
 			                                    </tr>
 			                                    </c:forEach>
 					                        </tbody>
@@ -233,20 +234,23 @@ dto = dao.getMember(id); //db 접속해서 id로 조회함
 			                                    <td><img src="${cart.imgLink }" alt="camping" id="camping" style="width: 100px; height: 100px;"></td>
 			                                    <td><a href="item_detail.do?item_idx=${cart.item_idx }">${cart.pName }</a></td>
 			                                    <td>${cart.amount }</td>
-			                                    <td>${cart.price }</td>
+			                                    <td><fmt:formatNumber value="${cart.price }" type="number" /></td>
 			                                    </tr>
+			                                    <c:set var="gum" value="${cart.price*cart.amount }" />
+			                                    <c:set var="total" value="${total+gum }" />
 			                                    </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div style="width: 20%;">
-                                        <h6 >총 상품 금액 &nbsp;&nbsp;&nbsp;47,500원</h6>
+                                        <h6 >총 상품 금액 &nbsp;<fmt:formatNumber value="${total }" type="number" /></h6>
                                         <h6>배송비 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2,500원</h6>
+                                        <c:set var="include_delivery" value="${total+2500 }" />
                                         <hr style="opacity: 0.5;">
                                         <h6 style="text-align: right;">예상결제금액</h6>
-                                        <h6 style="text-align: right; color:red; margin-bottom: 30px;">50,000원</h6>
+                                        <h6 style="text-align: right; color:red; margin-bottom: 30px;"><fmt:formatNumber value="${include_delivery }" type="number" /></h6>
                                         <button style="background-color: red;"><a href="#">전체상품 주문하기</a></button> <br>
-                                        <button style="background-color: darkgray;"><a href="shop_list.do?category=">쇼핑계속하기</a></button>
+                                        <button style="background-color: darkgray;"><a href="shop_list.do?category=&orderby=date">쇼핑계속하기</a></button>
                                     </div>
                                 </div>
                             </div>
